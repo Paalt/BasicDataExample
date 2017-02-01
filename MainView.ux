@@ -1,0 +1,19 @@
+<App>
+	<JavaScript>
+		var Data = require("Datasource.js");
+		var viewingmap = true;
+		function switchview(){
+			if(viewingmap) router.goto("listpage");
+			else router.goto("mappage");
+			viewingmap = !viewingmap;
+		}
+		module.exports = {resource: Data.resourceData, switchview};
+	</JavaScript>
+	<ClientPanel>
+		<Router ux:Name="router"/>
+		<Navigator DefaultPath="mappage">
+			<ListPage ux:Name="listpage"/>
+			<SimpleMapPage ux:Name="mappage" router="router"/>
+		</Navigator>
+	</ClientPanel>
+</App>

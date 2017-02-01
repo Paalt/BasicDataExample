@@ -1,0 +1,19 @@
+{
+  "RootNamespace":"",
+  "Android": {
+  	"Geo": {
+  		"ApiKey": "YOUR API KEY GOES HERE"
+  	}
+  },
+  "Packages": [
+  	"Fuse",
+  	"FuseJS",
+    "Fuse.GeoLocation",
+  	"Fuse.Maps"
+  ],
+  "Includes": [
+    "*",
+    "*.js:Bundle"
+  ]
+}
+

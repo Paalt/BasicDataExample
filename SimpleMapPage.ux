@@ -1,0 +1,36 @@
+<DockPanel ux:Class="SimpleMapPage">
+	<JavaScript>
+		var Observable = require("FuseJS/Observable");
+		var GeoLocation = require("FuseJS/GeoLocation");
+
+		var myPos = {latitude: Observable(59.9114911), longitude: Observable(10.741005)};
+
+		function locate_me(){
+			GeoLocation.getLocation(5000).then(function(location) {
+				myPos.latitude.value = location.latitude;
+				myPos.longitude.value = location.longitude;
+			}).catch(function(fail) {
+				console.log("getLocation fail " + fail);
+			});
+		}
+
+		locate_me();
+
+		function gotoList(){
+			router.push("listpage");
+		}
+
+		module.exports = {myPos,gotoList}
+	</JavaScript>
+
+	<Router ux:Dependency="router"/>
+	<NativeViewHost>
+		<MapView Latitude="{Read myPos.latitude}" Longitude="{Read myPos.longitude}" Zoom="16" >
+			<MapMarker Latitude="{myPos.latitude}" Longitude="{myPos.longitude}" Label="You are here"/>
+			<Each Items="{resource.records}">
+				<MapMarker Latitude="{Latitude}" Longitude="{Longitude}" Label="{title}"/>
+			</Each>
+		</MapView>
+	</NativeViewHost>
+	<Button Text="View list" Clicked="{gotoList}" Dock="Bottom" Padding="10"/>
+</DockPanel>

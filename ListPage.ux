@@ -1,0 +1,15 @@
+<DockPanel ux:Class="ListPage">
+	<Text ux:Class="Txt" TextWrapping="Wrap"/>
+	<ScrollView>
+		<StackPanel>
+			<Each Items="{resource.records}">
+				<Grid Columns="2*,2.3*,0.8*,0.8*">
+					<Txt Value="{title}"/>
+					<Txt Value="{subtitle}"/>
+					<Txt Value="{Latitude}"/>
+					<Txt Value="{Longitude}"/>
+				</Grid>
+			</Each>
+		</StackPanel>
+	</ScrollView>
+</DockPanel>
